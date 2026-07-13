@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "iWisdom PoS Engine — Asset Input",
+  "description": "Structured description of a drug development program to be scored.",
+  "type": "object",
+  "required": [
+    "current_phase"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "current_phase": {
+      "type": "string",
+      "enum": [
+        "phase1",
+        "phase2",
+        "phase3",
+        "filing"
+      ],
+      "description": "Phase the asset is currently in."
+    },
+    "disease_area": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Allergy",
+        "Autoimmune",
+        "Cardiovascular",
+        "Endocrine",
+        "Gastroenterology",
+        "Hematology",
+        "Infectious disease",
+        "Metabolic",
+        "Neurology",
+        "Oncology",
+        "Ophthalmology",
+        "Psychiatry",
+        "Respiratory",
+        "Urology",
+        "Others",
+        null
+      ],
+      "description": "Canonical disease area (BIO/QLS taxonomy)."
+    },
+    "modality": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "CAR-T",
+        "siRNA/RNAi",
+        "Monoclonal antibody",
+        "ADCs",
+        "Gene therapy",
+        "Vaccine",
+        "Protein",
+        "Peptide",
+        "Small molecule",
+        "Antisense",
+        null
+      ],
+      "description": "Drug modality (BIO/QLS Figure 10b)."
+    },
+    "biomarker_flag": {
+      "type": "boolean",
+      "default": false
+    },
+    "rare_disease_flag": {
+      "type": "boolean",
+      "default": false
+    },
+    "prior_approval_flag": {
+      "type": "boolean",
+      "default": false
+    },
+    "breakthrough_flag": {
+      "type": "boolean",
+      "default": false
+    },
+    "trial_outcome": {
+      "type": "string",
+      "enum": [
+        "positive",
+        "negative",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "lead_indication_flag": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

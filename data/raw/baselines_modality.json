@@ -1,0 +1,63 @@
+{
+  "_source": "BIO/QLS Advisors 2021, Figure 10b (Phase transition success rates by modality)",
+  "CAR-T": {
+    "phase1_to_2": {"pos": 0.442, "n": 43},
+    "phase2_to_3": {"pos": 0.588, "n": 17},
+    "phase3_to_filing": {"pos": 0.667, "n": 3},
+    "filing_to_approval": {"pos": 1.000, "n": 4}
+  },
+  "siRNA/RNAi": {
+    "phase1_to_2": {"pos": 0.700, "n": 40},
+    "phase2_to_3": {"pos": 0.289, "n": 38},
+    "phase3_to_filing": {"pos": 0.667, "n": 6},
+    "filing_to_approval": {"pos": 1.000, "n": 3}
+  },
+  "Monoclonal antibody": {
+    "phase1_to_2": {"pos": 0.547, "n": 804},
+    "phase2_to_3": {"pos": 0.341, "n": 740},
+    "phase3_to_filing": {"pos": 0.681, "n": 310},
+    "filing_to_approval": {"pos": 0.954, "n": 282}
+  },
+  "ADCs": {
+    "phase1_to_2": {"pos": 0.417, "n": 103},
+    "phase2_to_3": {"pos": 0.415, "n": 53},
+    "phase3_to_filing": {"pos": 0.625, "n": 16},
+    "filing_to_approval": {"pos": 1.000, "n": 12}
+  },
+  "Gene therapy": {
+    "phase1_to_2": {"pos": 0.519, "n": 27},
+    "phase2_to_3": {"pos": 0.386, "n": 57},
+    "phase3_to_filing": {"pos": 0.500, "n": 10},
+    "filing_to_approval": {"pos": 1.000, "n": 2}
+  },
+  "Vaccine": {
+    "phase1_to_2": {"pos": 0.527, "n": 129},
+    "phase2_to_3": {"pos": 0.316, "n": 117},
+    "phase3_to_filing": {"pos": 0.581, "n": 43},
+    "filing_to_approval": {"pos": 1.000, "n": 27}
+  },
+  "Protein": {
+    "phase1_to_2": {"pos": 0.516, "n": 246},
+    "phase2_to_3": {"pos": 0.330, "n": 288},
+    "phase3_to_filing": {"pos": 0.617, "n": 149},
+    "filing_to_approval": {"pos": 0.897, "n": 117}
+  },
+  "Peptide": {
+    "phase1_to_2": {"pos": 0.530, "n": 234},
+    "phase2_to_3": {"pos": 0.284, "n": 218},
+    "phase3_to_filing": {"pos": 0.600, "n": 100},
+    "filing_to_approval": {"pos": 0.881, "n": 67}
+  },
+  "Small molecule": {
+    "phase1_to_2": {"pos": 0.526, "n": 2308},
+    "phase2_to_3": {"pos": 0.280, "n": 2896},
+    "phase3_to_filing": {"pos": 0.569, "n": 1118},
+    "filing_to_approval": {"pos": 0.895, "n": 849}
+  },
+  "Antisense": {
+    "phase1_to_2": {"pos": 0.609, "n": 69},
+    "phase2_to_3": {"pos": 0.200, "n": 70},
+    "phase3_to_filing": {"pos": 0.643, "n": 14},
+    "filing_to_approval": {"pos": 0.667, "n": 9}
+  }
+}

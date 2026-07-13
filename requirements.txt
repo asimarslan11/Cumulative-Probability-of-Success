@@ -1,0 +1,6 @@
+# Runtime dependencies: none — the engine uses only the Python standard library
+# (json, os, dataclasses, enum). This keeps every calculation transparent and
+# free of third-party numerical black boxes.
+#
+# Development / test dependencies:
+pytest>=7.0

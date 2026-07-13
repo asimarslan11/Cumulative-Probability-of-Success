@@ -1,0 +1,21 @@
+{
+  "_source": "BIO/QLS Advisors 2021, Figure 7 (Oncology sub-category phase transition rates)",
+  "hematologic": {
+    "phase1_to_2": {"pos": 0.501, "n": 425},
+    "phase2_to_3": {"pos": 0.278, "n": 449},
+    "phase3_to_filing": {"pos": 0.600, "n": 120},
+    "filing_to_approval": {"pos": 0.900, "n": 100}
+  },
+  "solid_tumor": {
+    "phase1_to_2": {"pos": 0.489, "n": 1145},
+    "phase2_to_3": {"pos": 0.234, "n": 1261},
+    "phase3_to_filing": {"pos": 0.429, "n": 364},
+    "filing_to_approval": {"pos": 0.929, "n": 212}
+  },
+  "immuno_oncology": {
+    "phase1_to_2": {"pos": 0.640, "n": 275},
+    "phase2_to_3": {"pos": 0.402, "n": 244},
+    "phase3_to_filing": {"pos": 0.490, "n": 98},
+    "filing_to_approval": {"pos": 0.984, "n": 62}
+  }
+}

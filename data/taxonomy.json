@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "purpose": "Reconcile the two source taxonomies into one canonical disease-area enum with an explicit mapping table, per Day 1 of the brief.",
+    "canonical_choice": "The canonical set is BIO/QLS (2021)'s 14 major disease areas plus 'Others' (15 values). BIO/QLS is chosen as canonical because it is the finer-grained taxonomy and is the engine's primary baseline source. Wong (2019)'s 9 therapeutic groups are coarser and map one-to-(one-or-many) onto the canonical set.",
+    "unmapped_note": "Wong has no separate group for Hematology, Allergy, Gastroenterology, or Respiratory (they are absorbed into Wong's 'Overall'/unreported buckets), so those canonical areas map to null on the Wong side. 'Others' likewise has no Wong equivalent.",
+    "vaccines_note": "Wong's 'Vaccines (Infectious Disease)' is a therapeutic group in Wong but is really a modality subset within infectious disease; at the disease-area level it maps to 'Infectious disease'. Vaccine-as-modality lives in the modality/novelty tables, not here."
+  },
+
+  "canonical_disease_areas": [
+    "Allergy",
+    "Autoimmune",
+    "Cardiovascular",
+    "Endocrine",
+    "Gastroenterology",
+    "Hematology",
+    "Infectious disease",
+    "Metabolic",
+    "Neurology",
+    "Oncology",
+    "Ophthalmology",
+    "Psychiatry",
+    "Respiratory",
+    "Urology",
+    "Others"
+  ],
+
+  "bioqls_to_canonical": {
+    "Allergy": "Allergy",
+    "Autoimmune": "Autoimmune",
+    "Cardiovascular": "Cardiovascular",
+    "Endocrine": "Endocrine",
+    "Gastroenterology": "Gastroenterology",
+    "Hematology": "Hematology",
+    "Infectious disease": "Infectious disease",
+    "Metabolic": "Metabolic",
+    "Neurology": "Neurology",
+    "Oncology": "Oncology",
+    "Ophthalmology": "Ophthalmology",
+    "Psychiatry": "Psychiatry",
+    "Respiratory": "Respiratory",
+    "Urology": "Urology",
+    "Others": "Others"
+  },
+
+  "wong_to_canonical": {
+    "Oncology": ["Oncology"],
+    "Metabolic/Endocrinology": ["Metabolic", "Endocrine"],
+    "Cardiovascular": ["Cardiovascular"],
+    "CNS": ["Neurology", "Psychiatry"],
+    "Autoimmune/Inflammation": ["Autoimmune"],
+    "Genitourinary": ["Urology"],
+    "Infectious disease": ["Infectious disease"],
+    "Ophthalmology": ["Ophthalmology"],
+    "Vaccines (Infectious Disease)": ["Infectious disease"]
+  },
+
+  "canonical_to_wong": {
+    "Allergy": null,
+    "Autoimmune": "Autoimmune/Inflammation",
+    "Cardiovascular": "Cardiovascular",
+    "Endocrine": "Metabolic/Endocrinology",
+    "Gastroenterology": null,
+    "Hematology": null,
+    "Infectious disease": "Infectious disease",
+    "Metabolic": "Metabolic/Endocrinology",
+    "Neurology": "CNS",
+    "Oncology": "Oncology",
+    "Ophthalmology": "Ophthalmology",
+    "Psychiatry": "CNS",
+    "Respiratory": null,
+    "Urology": "Genitourinary",
+    "Others": null
+  }
+}

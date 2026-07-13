@@ -1,0 +1,134 @@
+{
+  "_meta": {
+    "source": "Wong, C.H., Siah, K.W., Lo, A.W. (2019). Estimation of clinical trial success rates and related parameters. Biostatistics 20(2), 273-286. doi:10.1093/biostatistics/kxx069",
+    "sample": "406,038 trial entries / 185,994 unique trials / 21,143 compounds, Jan 1 2000 - Oct 31 2015. Industry-sponsored analysis: 41,040 development paths (67,752 phase transitions).",
+    "phase_scheme": "Wong tracks THREE transitions: Phase 1->2, Phase 2->3, Phase 3->Approval. Unlike BIO/QLS (2021), Wong does NOT split out the regulatory NDA/BLA->Approval step, so 'pos3_app' spans BOTH filing and approval. Keys: pos1_2, pos2_3, pos3_app, pos2_app (Phase 2 -> Approval), loa (= POS1,APP, overall Phase 1 -> Approval). Do NOT equate pos3_app with BIO/QLS 'phase3_to_filing'.",
+    "methods": "path-by-path is Wong's headline method (Tables 1, 2, 4). phase-by-phase is used for the biomarker analysis (Table 3) and the prior-literature comparison columns of Table 1. Rates stored as fractions.",
+    "known_discrepancy": "The paper's abstract/body text states 'POS2,3 = 58.3%', but Table 1 and Table 2 report the all-indications path-by-path POS2,3 as 48.6% (58.3% is actually the Infectious-disease group value). We treat the TABLE value (0.486) as authoritative. Recorded per the brief's Day-4 'document, do not silently reconcile' guidance.",
+    "notes": "N.A. cells (very small samples) are recorded as null. The all-indications phase-by-phase column of Table 1 is intentionally omitted: its reading was internally inconsistent (POS1,APP did not equal the product of the phase POS), and Wong's path-by-path figures are the headline estimates used for cross-validation."
+  },
+
+  "table1_aggregate": {
+    "_ref": "Table 1",
+    "this_study_all_indications": {
+      "method": "path-by-path",
+      "pos1_2": 0.664, "pos2_3": 0.486, "pos3_app": 0.590, "loa": 0.138
+    },
+    "this_study_lead_indications": {
+      "method": "path-by-path",
+      "pos1_2": 0.758, "pos2_3": 0.556, "pos3_app": 0.677, "loa": 0.216
+    },
+    "prior_literature_phase_by_phase": {
+      "_note": "Verified: for each row loa == pos1_2 * pos2_3 * pos3_app (phase-by-phase multiplicative estimate).",
+      "Thomas 2016 (all indications)":   {"pos1_2": 0.632, "pos2_3": 0.307, "pos3_app": 0.496, "loa": 0.096},
+      "Hay 2014 (all indications)":      {"pos1_2": 0.645, "pos2_3": 0.324, "pos3_app": 0.500, "loa": 0.104},
+      "Hay 2014 (lead indications)":     {"pos1_2": 0.665, "pos2_3": 0.395, "pos3_app": 0.584, "loa": 0.153},
+      "DiMasi 2010 (lead indications)":  {"pos1_2": 0.710, "pos2_3": 0.450, "pos3_app": 0.600, "loa": 0.190}
+    }
+  },
+
+  "table2_therapeutic_group": {
+    "_ref": "Table 2",
+    "method": "path-by-path",
+    "all_indications": {
+      "Oncology":                     {"pos1_2": 0.576, "pos2_3": 0.327, "pos2_app": 0.067, "pos3_app": 0.355, "loa": 0.034, "total_paths": {"phase1": 17368, "phase2": 6533, "phase3": 1236}},
+      "Metabolic/Endocrinology":      {"pos1_2": 0.762, "pos2_3": 0.597, "pos2_app": 0.241, "pos3_app": 0.516, "loa": 0.196, "total_paths": {"phase1": 3589, "phase2": 2357, "phase3": 1101}},
+      "Cardiovascular":               {"pos1_2": 0.733, "pos2_3": 0.657, "pos2_app": 0.323, "pos3_app": 0.622, "loa": 0.255, "total_paths": {"phase1": 2810, "phase2": 1858, "phase3": 964}},
+      "CNS":                          {"pos1_2": 0.732, "pos2_3": 0.519, "pos2_app": 0.195, "pos3_app": 0.511, "loa": 0.150, "total_paths": {"phase1": 4924, "phase2": 3037, "phase3": 1156}},
+      "Autoimmune/Inflammation":      {"pos1_2": 0.698, "pos2_3": 0.457, "pos2_app": 0.212, "pos3_app": 0.637, "loa": 0.151, "total_paths": {"phase1": 5086, "phase2": 2910, "phase3": 969}},
+      "Genitourinary":                {"pos1_2": 0.687, "pos2_3": 0.571, "pos2_app": 0.297, "pos3_app": 0.665, "loa": 0.216, "total_paths": {"phase1": 757, "phase2": 475, "phase3": 212}},
+      "Infectious disease":           {"pos1_2": 0.701, "pos2_3": 0.583, "pos2_app": 0.351, "pos3_app": 0.753, "loa": 0.252, "total_paths": {"phase1": 3963, "phase2": 2314, "phase3": 1078}},
+      "Ophthalmology":                {"pos1_2": 0.871, "pos2_3": 0.607, "pos2_app": 0.336, "pos3_app": 0.749, "loa": 0.326, "total_paths": {"phase1": 674, "phase2": 461, "phase3": 207}},
+      "Vaccines (Infectious Disease)":{"pos1_2": 0.768, "pos2_3": 0.582, "pos2_app": 0.421, "pos3_app": 0.854, "loa": 0.334, "total_paths": {"phase1": 1869, "phase2": 1235, "phase3": 609}},
+      "Overall":                      {"pos1_2": 0.664, "pos2_3": 0.486, "pos2_app": 0.210, "pos3_app": 0.590, "loa": 0.138, "total_paths": {"phase1": 41040, "phase2": 21180, "phase3": 7532}},
+      "All without oncology":         {"pos1_2": 0.730, "pos2_3": 0.557, "pos2_app": 0.273, "pos3_app": 0.636, "loa": 0.209, "total_paths": {"phase1": 23672, "phase2": 14647, "phase3": 6296}}
+    },
+    "lead_indications": {
+      "Oncology":                     {"pos1_2": 0.787, "pos2_3": 0.539, "pos2_app": 0.131, "pos3_app": 0.485, "loa": 0.114, "total_paths": {"phase1": 3107, "phase2": 1601, "phase3": 431}},
+      "Metabolic/Endocrinology":      {"pos1_2": 0.752, "pos2_3": 0.570, "pos2_app": 0.264, "pos3_app": 0.628, "loa": 0.213, "total_paths": {"phase1": 2012, "phase2": 1273, "phase3": 535}},
+      "Cardiovascular":               {"pos1_2": 0.711, "pos2_3": 0.649, "pos2_app": 0.341, "pos3_app": 0.723, "loa": 0.266, "total_paths": {"phase1": 1599, "phase2": 1002, "phase3": 473}},
+      "CNS":                          {"pos1_2": 0.750, "pos2_3": 0.545, "pos2_app": 0.241, "pos3_app": 0.630, "loa": 0.193, "total_paths": {"phase1": 2777, "phase2": 1695, "phase3": 648}},
+      "Autoimmune/Inflammation":      {"pos1_2": 0.789, "pos2_3": 0.487, "pos2_app": 0.243, "pos3_app": 0.686, "loa": 0.203, "total_paths": {"phase1": 2900, "phase2": 1862, "phase3": 659}},
+      "Genitourinary":                {"pos1_2": 0.734, "pos2_3": 0.592, "pos2_app": 0.319, "pos3_app": 0.693, "loa": 0.253, "total_paths": {"phase1": 568, "phase2": 382, "phase3": 176}},
+      "Infectious disease":           {"pos1_2": 0.746, "pos2_3": 0.580, "pos2_app": 0.343, "pos3_app": 0.766, "loa": 0.267, "total_paths": {"phase1": 2186, "phase2": 1326, "phase3": 594}},
+      "Ophthalmology":                {"pos1_2": 0.890, "pos2_3": 0.576, "pos2_app": 0.305, "pos3_app": 0.742, "loa": 0.307, "total_paths": {"phase1": 437, "phase2": 302, "phase3": 124}},
+      "Vaccines (Infectious Disease)":{"pos1_2": 0.758, "pos2_3": 0.571, "pos2_app": 0.404, "pos3_app": 0.851, "loa": 0.316, "total_paths": {"phase1": 881, "phase2": 567, "phase3": 269}},
+      "Overall":                      {"pos1_2": 0.758, "pos2_3": 0.556, "pos2_app": 0.264, "pos3_app": 0.677, "loa": 0.216, "total_paths": {"phase1": 16467, "phase2": 10010, "phase3": 3909}},
+      "All without oncology":         {"pos1_2": 0.758, "pos2_3": 0.559, "pos2_app": 0.290, "pos3_app": 0.700, "loa": 0.234, "total_paths": {"phase1": 13360, "phase2": 8409, "phase3": 3478}}
+    }
+  },
+
+  "table3_biomarker": {
+    "_ref": "Table 3",
+    "method": "phase-by-phase",
+    "time_window": "2005-2015",
+    "_caution": "Wong cautions against over-interpreting non-oncology biomarker rows due to very small samples (see total_transitions). Biomarkers are seldom used outside oncology.",
+    "Oncology": {
+      "no_biomarker":   {"pos1_2": 0.280, "pos2_3": 0.174, "pos3_app": 0.336, "loa": 0.016, "total_transitions": {"phase1": 9349, "phase2": 4773, "phase3": 1159}},
+      "with_biomarker": {"pos1_2": 0.435, "pos2_3": 0.388, "pos3_app": 0.636, "loa": 0.107, "total_transitions": {"phase1": 1136, "phase2": 742, "phase3": 77}},
+      "all":            {"pos1_2": 0.297, "pos2_3": 0.203, "pos3_app": 0.355, "loa": 0.021, "total_transitions": {"phase1": 10485, "phase2": 5515, "phase3": 1236}}
+    },
+    "Metabolic/Endocrinology": {
+      "no_biomarker":   {"pos1_2": 0.445, "pos2_3": 0.339, "pos3_app": 0.520, "loa": 0.079, "total_transitions": {"phase1": 1532, "phase2": 1438, "phase3": 1086}},
+      "with_biomarker": {"pos1_2": 0.571, "pos2_3": 0.500, "pos3_app": 0.200, "loa": 0.057, "total_transitions": {"phase1": 7, "phase2": 2, "phase3": 15}},
+      "all":            {"pos1_2": 0.446, "pos2_3": 0.340, "pos3_app": 0.516, "loa": 0.078, "total_transitions": {"phase1": 1539, "phase2": 1440, "phase3": 1101}}
+    },
+    "Cardiovascular": {
+      "no_biomarker":   {"pos1_2": 0.396, "pos2_3": 0.379, "pos3_app": 0.622, "loa": 0.093, "total_transitions": {"phase1": 1241, "phase2": 1027, "phase3": 962}},
+      "with_biomarker": {"pos1_2": 0.857, "pos2_3": 1.000, "pos3_app": 1.000, "loa": 0.857, "total_transitions": {"phase1": 7, "phase2": 5, "phase3": 2}},
+      "all":            {"pos1_2": 0.399, "pos2_3": 0.382, "pos3_app": 0.622, "loa": 0.095, "total_transitions": {"phase1": 1248, "phase2": 1032, "phase3": 964}}
+    },
+    "CNS": {
+      "no_biomarker":   {"pos1_2": 0.404, "pos2_3": 0.302, "pos3_app": 0.511, "loa": 0.062, "total_transitions": {"phase1": 2181, "phase2": 2050, "phase3": 1141}},
+      "with_biomarker": {"pos1_2": 0.548, "pos2_3": 0.286, "pos3_app": 0.533, "loa": 0.083, "total_transitions": {"phase1": 42, "phase2": 42, "phase3": 15}},
+      "all":            {"pos1_2": 0.407, "pos2_3": 0.302, "pos3_app": 0.511, "loa": 0.063, "total_transitions": {"phase1": 2223, "phase2": 2092, "phase3": 1156}}
+    },
+    "Autoimmune/Inflammation": {
+      "no_biomarker":   {"pos1_2": 0.389, "pos2_3": 0.254, "pos3_app": 0.637, "loa": 0.063, "total_transitions": {"phase1": 2506, "phase2": 2106, "phase3": 964}},
+      "with_biomarker": {"pos1_2": 0.556, "pos2_3": 0.357, "pos3_app": 0.600, "loa": 0.119, "total_transitions": {"phase1": 9, "phase2": 14, "phase3": 5}},
+      "all":            {"pos1_2": 0.390, "pos2_3": 0.255, "pos3_app": 0.637, "loa": 0.063, "total_transitions": {"phase1": 2515, "phase2": 2120, "phase3": 969}}
+    },
+    "Genitourinary": {
+      "no_biomarker":   {"pos1_2": 0.343, "pos2_3": 0.289, "pos3_app": 0.665, "loa": 0.066, "total_transitions": {"phase1": 359, "phase2": 287, "phase3": 212}},
+      "with_biomarker": {"pos1_2": 0.800, "pos2_3": null, "pos3_app": null, "loa": null, "total_transitions": {"phase1": 5, "phase2": 0, "phase3": 0}},
+      "all":            {"pos1_2": 0.349, "pos2_3": 0.289, "pos3_app": 0.665, "loa": 0.067, "total_transitions": {"phase1": 364, "phase2": 287, "phase3": 212}}
+    },
+    "Infectious disease": {
+      "no_biomarker":   {"pos1_2": 0.397, "pos2_3": 0.347, "pos3_app": 0.751, "loa": 0.104, "total_transitions": {"phase1": 1961, "phase2": 1453, "phase3": 1069}},
+      "with_biomarker": {"pos1_2": 0.667, "pos2_3": 0.444, "pos3_app": 1.000, "loa": 0.296, "total_transitions": {"phase1": 6, "phase2": 27, "phase3": 9}},
+      "all":            {"pos1_2": 0.398, "pos2_3": 0.349, "pos3_app": 0.753, "loa": 0.105, "total_transitions": {"phase1": 1967, "phase2": 1480, "phase3": 1078}}
+    },
+    "Ophthalmology": {
+      "no_biomarker":   {"pos1_2": 0.522, "pos2_3": 0.347, "pos3_app": 0.749, "loa": 0.136, "total_transitions": {"phase1": 180, "phase2": 274, "phase3": 207}},
+      "with_biomarker": {"pos1_2": 0.000, "pos2_3": 0.333, "pos3_app": null, "loa": null, "total_transitions": {"phase1": 1, "phase2": 3, "phase3": 0}},
+      "all":            {"pos1_2": 0.519, "pos2_3": 0.347, "pos3_app": 0.749, "loa": 0.135, "total_transitions": {"phase1": 181, "phase2": 277, "phase3": 207}}
+    },
+    "Vaccines (Infectious Disease)": {
+      "no_biomarker":   {"pos1_2": 0.408, "pos2_3": 0.329, "pos3_app": 0.854, "loa": 0.114, "total_transitions": {"phase1": 733, "phase2": 761, "phase3": 609}},
+      "with_biomarker": {"pos1_2": null, "pos2_3": 0.000, "pos3_app": null, "loa": null, "total_transitions": {"phase1": 0, "phase2": 5, "phase3": 0}},
+      "all":            {"pos1_2": 0.408, "pos2_3": 0.326, "pos3_app": 0.854, "loa": 0.114, "total_transitions": {"phase1": 733, "phase2": 766, "phase3": 609}}
+    },
+    "Overall": {
+      "no_biomarker":   {"pos1_2": 0.347, "pos2_3": 0.268, "pos3_app": 0.590, "loa": 0.055, "total_transitions": {"phase1": 20042, "phase2": 14169, "phase3": 7409}},
+      "with_biomarker": {"pos1_2": 0.445, "pos2_3": 0.386, "pos3_app": 0.602, "loa": 0.103, "total_transitions": {"phase1": 1213, "phase2": 840, "phase3": 123}},
+      "all":            {"pos1_2": 0.352, "pos2_3": 0.274, "pos3_app": 0.590, "loa": 0.057, "total_transitions": {"phase1": 21255, "phase2": 15009, "phase3": 7532}}
+    }
+  },
+
+  "table4_orphan": {
+    "_ref": "Table 4",
+    "method": "path-by-path",
+    "sample": "3548 orphan-drug data points; 95.3% observed on/after Jan 1 2005.",
+    "Oncology":                      {"pos1_2": 0.720, "pos2_3": 0.394, "pos2_app": 0.028, "pos3_app": 0.144, "loa": 0.012, "total_paths": {"phase1": 1245, "phase2": 535, "phase3": 104}},
+    "Metabolic/Endocrinology":       {"pos1_2": 0.843, "pos2_3": 0.667, "pos2_app": 0.311, "pos3_app": 0.778, "loa": 0.157, "total_paths": {"phase1": 89, "phase2": 45, "phase3": 18}},
+    "Cardiovascular":                {"pos1_2": 0.696, "pos2_3": 0.776, "pos2_app": 0.431, "pos3_app": 0.833, "loa": 0.217, "total_paths": {"phase1": 115, "phase2": 58, "phase3": 30}},
+    "CNS":                           {"pos1_2": 0.850, "pos2_3": 0.563, "pos2_app": 0.083, "pos3_app": 0.320, "loa": 0.050, "total_paths": {"phase1": 160, "phase2": 96, "phase3": 25}},
+    "Autoimmune/Inflammation":       {"pos1_2": 0.763, "pos2_3": 0.570, "pos2_app": 0.088, "pos3_app": 0.313, "loa": 0.044, "total_paths": {"phase1": 228, "phase2": 114, "phase3": 32}},
+    "Genitourinary":                 {"pos1_2": 1.000, "pos2_3": 0.462, "pos2_app": 0.385, "pos3_app": 0.833, "loa": 0.357, "total_paths": {"phase1": 14, "phase2": 13, "phase3": 6}},
+    "Infectious disease":            {"pos1_2": 0.892, "pos2_3": 0.538, "pos2_app": 0.288, "pos3_app": 0.769, "loa": 0.191, "total_paths": {"phase1": 157, "phase2": 104, "phase3": 39}},
+    "Ophthalmology":                 {"pos1_2": 0.737, "pos2_3": 0.714, "pos2_app": 0.000, "pos3_app": null, "loa": null, "total_paths": {"phase1": 19, "phase2": 7, "phase3": 0}},
+    "Vaccines (Infectious Disease)": {"pos1_2": 0.895, "pos2_3": 0.535, "pos2_app": 0.512, "pos3_app": 1.000, "loa": 0.386, "total_paths": {"phase1": 57, "phase2": 43, "phase3": 22}},
+    "Overall":                       {"pos1_2": 0.759, "pos2_3": 0.488, "pos2_app": 0.127, "pos3_app": 0.467, "loa": 0.062, "total_paths": {"phase1": 2084, "phase2": 1015, "phase3": 276}},
+    "All except oncology":           {"pos1_2": 0.815, "pos2_3": 0.592, "pos2_app": 0.238, "pos3_app": 0.663, "loa": 0.136, "total_paths": {"phase1": 839, "phase2": 480, "phase3": 172}}
+  }
+}

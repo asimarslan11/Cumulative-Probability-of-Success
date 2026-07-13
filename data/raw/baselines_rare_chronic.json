@@ -1,0 +1,15 @@
+{
+  "_source": "BIO/QLS Advisors 2021, Figure 8b (Non-oncology rare disease vs chronic high-prevalence disease rates)",
+  "rare_disease": {
+    "phase1_to_2": {"pos": 0.674, "n": 380},
+    "phase2_to_3": {"pos": 0.446, "n": 464},
+    "phase3_to_filing": {"pos": 0.604, "n": 240},
+    "filing_to_approval": {"pos": 0.936, "n": 172}
+  },
+  "chronic_high_prevalence": {
+    "phase1_to_2": {"pos": 0.460, "n": 745},
+    "phase2_to_3": {"pos": 0.231, "n": 737},
+    "phase3_to_filing": {"pos": 0.595, "n": 279},
+    "filing_to_approval": {"pos": 0.926, "n": 217}
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "_source": "BIO/QLS Advisors 2021, Figure 1 (Overall phase transition success rates, all diseases, all modalities)",
+  "all_indications": {
+    "phase1_to_2": {"pos": 0.520, "n": 4414},
+    "phase2_to_3": {"pos": 0.289, "n": 4933},
+    "phase3_to_filing": {"pos": 0.578, "n": 1928},
+    "filing_to_approval": {"pos": 0.906, "n": 1453}
+  }
+}

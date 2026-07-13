@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pos_engine"
+version = "0.1.0.dev0"
+description = "iWisdom PoS Engine — transparent, source-grounded cumulative probability-of-success estimator for drug development programs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [{ name = "iWisdom" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+# Make `src/` importable so tests can `import pos_engine` without a sys.path shim.
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"

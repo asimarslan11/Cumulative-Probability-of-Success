@@ -1,0 +1,15 @@
+{
+  "_source": "BIO/QLS Advisors 2021, Figure 11 (Patient preselection biomarker phase transition rates)",
+  "with_biomarker": {
+    "phase1_to_2": {"pos": 0.524, "n": 414},
+    "phase2_to_3": {"pos": 0.463, "n": 149},
+    "phase3_to_filing": {"pos": 0.682, "n": 129},
+    "filing_to_approval": {"pos": 0.960, "n": 75}
+  },
+  "without_biomarker": {
+    "phase1_to_2": {"pos": 0.520, "n": 4000},
+    "phase2_to_3": {"pos": 0.283, "n": 4784},
+    "phase3_to_filing": {"pos": 0.571, "n": 1799},
+    "filing_to_approval": {"pos": 0.903, "n": 1378}
+  }
+}

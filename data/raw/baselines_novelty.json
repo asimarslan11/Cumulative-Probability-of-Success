@@ -1,0 +1,33 @@
+{
+  "_source": "BIO/QLS Advisors 2021, Figure 9 (Phase transition rates by drug class and novelty)",
+  "NME": {
+    "phase1_to_2": {"pos": 0.506, "n": 2505},
+    "phase2_to_3": {"pos": 0.256, "n": 2924},
+    "phase3_to_filing": {"pos": 0.506, "n": 869},
+    "filing_to_approval": {"pos": 0.861, "n": 505}
+  },
+  "Biologic": {
+    "phase1_to_2": {"pos": 0.525, "n": 1301},
+    "phase2_to_3": {"pos": 0.324, "n": 1355},
+    "phase3_to_filing": {"pos": 0.567, "n": 462},
+    "filing_to_approval": {"pos": 0.946, "n": 294}
+  },
+  "Vaccine": {
+    "phase1_to_2": {"pos": 0.520, "n": 127},
+    "phase2_to_3": {"pos": 0.322, "n": 115},
+    "phase3_to_filing": {"pos": 0.581, "n": 43},
+    "filing_to_approval": {"pos": 1.000, "n": 27}
+  },
+  "Non-NME": {
+    "phase1_to_2": {"pos": 0.575, "n": 395},
+    "phase2_to_3": {"pos": 0.375, "n": 523},
+    "phase3_to_filing": {"pos": 0.675, "n": 471},
+    "filing_to_approval": {"pos": 0.915, "n": 495}
+  },
+  "Biosimilar": {
+    "phase1_to_2": {"pos": 0.800, "n": 60},
+    "phase2_to_3": {"pos": 0.500, "n": 4},
+    "phase3_to_filing": {"pos": 0.864, "n": 81},
+    "filing_to_approval": {"pos": 0.932, "n": 132}
+  }
+}
