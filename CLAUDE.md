@@ -50,6 +50,14 @@ data/raw/*.json  ──►  scripts/build_baseline_rates.py  ──►  data/bas
 - `src/pos_engine/taxonomy.py` — canonical `DiseaseArea` enum + `to_canonical(name, source)`.
 - `src/pos_engine/asset.py` — the `Asset` input schema (dataclass + enums + validation);
   `data/asset_schema.json` is generated from it.
+- `src/pos_engine/odds.py` — `prob_to_odds`/`odds_to_prob`/`clip_prob`; the odds-space
+  primitives, with 0.1%–99% clipping so 0%/100% cells don't blow up (Day 2).
+- `src/pos_engine/config.py` — Day-2 tunables in one place: clip bounds, shrinkage `k`,
+  `MIN_ARM_N`, the LR reference-arm map, Fig-14 illustrative deltas, correlation groups.
+- `src/pos_engine/likelihood_ratios.py` — `LikelihoodRatios.lr(evidence_type, phase, value)`
+  derives an odds-ratio LR from two published arms (None-skips sub-`MIN_ARM_N` arms), and
+  `.combine(baseline_prob, evidence_items)` folds LRs onto a baseline with correlation-group
+  shrinkage + an audit trail (see `docs/likelihood_ratios.md`).
 
 ## Key decisions / gotchas (don't relearn these the hard way)
 
