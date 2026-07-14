@@ -13,6 +13,8 @@ References are to:
     - Wong, Siah & Lo (2019), Biostatistics 20(2)
 """
 
+from dataclasses import dataclass
+
 # --- clip range (odds arithmetic) ------------------------------------------
 # The brief's 0.1%-99% clamp. Keeps 0% / 100% source cells from producing 0 or
 # infinite odds when we convert prob <-> odds.
@@ -132,6 +134,111 @@ CORRELATION_GROUPS = {
 }
 
 
+# --- Day-3 pipeline config -------------------------------------------------
+@dataclass(frozen=True)
+class EngineConfig:
+    """The run-time knobs the Day-3 pipeline reads, bundled so Day 4 can sweep them
+    without editing code (e.g. ``EngineConfig(k=0.25)``).
+
+    ``k``                 shrinkage strength passed to ``LikelihoodRatios.combine``.
+    ``min_prob``/``max_prob``  bounds the engine clips the *cumulative* PoS to, so a
+                          deep pipeline can't report a number outside the stated
+                          0.1%-99% range. (Per-phase probabilities are already clipped
+                          inside ``combine`` using the module constants.)
+
+    Defaults mirror the module-level constants above, so an ``EngineConfig()`` behaves
+    exactly like the un-parameterised engine.
+    """
+
+    k: float = SHRINKAGE_K
+    min_prob: float = MIN_PROB
+    max_prob: float = MAX_PROB
+
+
+# --- evidence routing (asset field -> likelihood ratio) --------------------
+# The single table that turns an Asset's fields into LR requests. Day 3's pipeline
+# walks this list; nothing else decides which LRs an asset gets.
+#
+# Each entry:
+#   evidence_type   passed to LikelihoodRatios.lr(evidence_type, phase, value)
+#   trigger         how to tell the signal is present on the asset:
+#                     ("flag", field)             -> getattr(asset, field) is True
+#                     ("present", field)          -> getattr(asset, field) is not None
+#                     ("equals", field, value)    -> asset field's value == value
+#   value_from      asset attribute supplying the LR `value` (modality/novelty names),
+#                   or None for fixed contrasts
+#   temporality     which of the remaining transitions the signal applies to:
+#                     "persistent"  every remaining transition (a standing program
+#                                   attribute)
+#                     "next_only"   only the immediate next transition (a one-time
+#                                   readout, not re-counted down the pipeline)
+#                     "regulatory"  only the filing-facing transitions in
+#                                   REGULATORY_PHASES
+#   baseline_tier   the fallback tier this LR would double-count if that tier was
+#                   itself the baseline for the transition (skip it then); None if the
+#                   contrast never coincides with a baseline tier
+REGULATORY_PHASES = ("phase3_to_filing", "filing_to_approval")
+
+EVIDENCE_ROUTING = (
+    {
+        "evidence_type": "biomarker",
+        "trigger": ("flag", "biomarker_flag"),
+        "value_from": None,
+        "temporality": "persistent",
+        "baseline_tier": None,
+    },
+    {
+        "evidence_type": "rare_disease",
+        "trigger": ("flag", "rare_disease_flag"),
+        "value_from": None,
+        "temporality": "persistent",
+        "baseline_tier": None,
+    },
+    {
+        # A program's modality is a standing attribute, but if the baseline itself
+        # fell back to the modality tier (no disease-specific rate), applying the
+        # modality LR too would double-count -> baseline_tier guards that per phase.
+        "evidence_type": "modality",
+        "trigger": ("present", "modality"),
+        "value_from": "modality",
+        "temporality": "persistent",
+        "baseline_tier": "modality",
+    },
+    {
+        # Evidence about the readout just completed -> the immediate next step only.
+        "evidence_type": "trial_outcome_positive",
+        "trigger": ("equals", "trial_outcome", "positive"),
+        "value_from": None,
+        "temporality": "next_only",
+        "baseline_tier": None,
+    },
+    {
+        "evidence_type": "breakthrough",
+        "trigger": ("flag", "breakthrough_flag"),
+        "value_from": None,
+        "temporality": "regulatory",
+        "baseline_tier": None,
+    },
+    {
+        "evidence_type": "prior_approval",
+        "trigger": ("flag", "prior_approval_flag"),
+        "value_from": None,
+        "temporality": "regulatory",
+        "baseline_tier": None,
+    },
+    {
+        # Persistent in principle, but LEAD_INDICATION_PROXY caps its phases to the
+        # two early transitions and lr() returns None elsewhere, so no phase filter
+        # is needed here.
+        "evidence_type": "lead_indication",
+        "trigger": ("flag", "lead_indication_flag"),
+        "value_from": None,
+        "temporality": "persistent",
+        "baseline_tier": None,
+    },
+)
+
+
 __all__ = [
     "MIN_PROB",
     "MAX_PROB",
@@ -142,4 +249,7 @@ __all__ = [
     "ILLUSTRATIVE_BASELINE",
     "ILLUSTRATIVE_LRS",
     "CORRELATION_GROUPS",
+    "EngineConfig",
+    "REGULATORY_PHASES",
+    "EVIDENCE_ROUTING",
 ]

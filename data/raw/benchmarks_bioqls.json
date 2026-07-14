@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "description": "Published likelihood-of-approval (LOA) benchmarks transcribed from the BIO/QLS 2021 report, used by tests/test_benchmarks.py to validate that the engine's compounded PoS reproduces the sources' own published figures. This is BENCHMARK GROUND TRUTH, not engine input: it is never read by the engine and is not part of the baseline_rates.json build.",
+    "source": "BIO, QLS Advisors, Informa Pharma Intelligence (2021). Clinical Development Success Rates and Contributing Factors 2011-2020.",
+    "transcription_note": "Values read directly from the report's figure tables (pypdf used once as a transcription aid; not an engine dependency). LOA is BIO's own compounded probability of FDA approval FROM the given phase. NDA/BLA cells reported as 100% appear here verbatim; the engine clips probabilities to [0.1%, 99%], so it reports 0.99 where a source cell is 1.000 (a deliberate Day-2 decision -- see docs/validation.md).",
+    "phase_keys": ["phase1", "phase2", "phase3", "filing"],
+    "phase_meaning": "LOA from Phase I / Phase II / Phase III / NDA-BLA to approval"
+  },
+
+  "fig5b_loa": {
+    "_ref": "BIO/QLS 2021 Figure 5b (likelihood of approval by disease area)",
+    "all_indications":    {"phase1": 0.079, "phase2": 0.151, "phase3": 0.524, "filing": 0.906, "n": 12728},
+    "Hematology":         {"phase1": 0.239, "phase2": 0.344, "phase3": 0.715, "filing": 0.931, "n": 352},
+    "Metabolic":          {"phase1": 0.155, "phase2": 0.250, "phase3": 0.557, "filing": 0.875, "n": 399},
+    "Infectious disease": {"phase1": 0.132, "phase2": 0.228, "phase3": 0.594, "filing": 0.929, "n": 1170},
+    "Others":             {"phase1": 0.130, "phase2": 0.205, "phase3": 0.530, "filing": 0.884, "n": 541},
+    "Ophthalmology":      {"phase1": 0.119, "phase2": 0.166, "phase3": 0.467, "filing": 0.911, "n": 415},
+    "Autoimmune":         {"phase1": 0.107, "phase2": 0.193, "phase3": 0.614, "filing": 0.941, "n": 1305},
+    "Allergy":            {"phase1": 0.103, "phase2": 0.183, "phase3": 0.647, "filing": 1.000, "n": 201},
+    "Gastroenterology":   {"phase1": 0.083, "phase2": 0.178, "phase3": 0.519, "filing": 0.909, "n": 186},
+    "Respiratory":        {"phase1": 0.075, "phase2": 0.135, "phase3": 0.616, "filing": 0.956, "n": 501},
+    "Psychiatry":         {"phase1": 0.073, "phase2": 0.138, "phase3": 0.514, "filing": 0.912, "n": 442},
+    "Endocrine":          {"phase1": 0.066, "phase2": 0.152, "phase3": 0.571, "filing": 0.863, "n": 887},
+    "Neurology":          {"phase1": 0.059, "phase2": 0.123, "phase3": 0.460, "filing": 0.867, "n": 1411},
+    "Oncology":           {"phase1": 0.053, "phase2": 0.108, "phase3": 0.439, "filing": 0.920, "n": 4179},
+    "Cardiovascular":     {"phase1": 0.048, "phase2": 0.096, "phase3": 0.456, "filing": 0.825, "n": 651},
+    "Urology":            {"phase1": 0.036, "phase2": 0.088, "phase3": 0.586, "filing": 0.846, "n": 88}
+  },
+
+  "fig10b_modality_loa": {
+    "_ref": "BIO/QLS 2021 Figure 10b (LOA from Phase I by drug modality)",
+    "CAR-T": 0.173,
+    "siRNA/RNAi": 0.135,
+    "Monoclonal antibody": 0.121,
+    "ADCs": 0.108,
+    "Gene therapy": 0.100,
+    "Vaccine": 0.097,
+    "Protein": 0.094,
+    "Peptide": 0.080,
+    "Small molecule": 0.075,
+    "Antisense": 0.052
+  },
+
+  "fig11_biomarker_loa": {
+    "_ref": "BIO/QLS 2021 Figure 11 (patient-preselection biomarker LOA)",
+    "with_biomarker":    {"phase1": 0.159, "phase2": 0.303, "phase3": 0.655, "filing": 0.960},
+    "without_biomarker": {"phase1": 0.076, "phase2": 0.146, "phase3": 0.515, "filing": 0.903},
+    "approx_ratio_phase1": 2.09
+  }
+}

@@ -1,0 +1,151 @@
+[
+  {
+    "name": "bare_phase1",
+    "asset": {
+      "current_phase": "phase1"
+    },
+    "cumulative_pos": 0.078696827,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.52,
+      "phase2_to_3": 0.289,
+      "phase3_to_filing": 0.578,
+      "filing_to_approval": 0.906
+    }
+  },
+  {
+    "name": "oncology_biomarker_phase1",
+    "asset": {
+      "current_phase": "phase1",
+      "disease_area": "Oncology",
+      "biomarker_flag": true
+    },
+    "cumulative_pos": 0.1178577107,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.492006157,
+      "phase2_to_3": 0.4161245854,
+      "phase3_to_filing": 0.5950738983,
+      "filing_to_approval": 0.9673712737
+    }
+  },
+  {
+    "name": "cart_no_disease_phase1",
+    "asset": {
+      "current_phase": "phase1",
+      "modality": "CAR-T"
+    },
+    "cumulative_pos": 0.1716171257,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.442,
+      "phase2_to_3": 0.588,
+      "phase3_to_filing": 0.667,
+      "filing_to_approval": 0.99
+    }
+  },
+  {
+    "name": "oncology_cart_biomarker_phase1",
+    "asset": {
+      "current_phase": "phase1",
+      "disease_area": "Oncology",
+      "modality": "CAR-T",
+      "biomarker_flag": true
+    },
+    "cumulative_pos": 0.1412659897,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.4387960493,
+      "phase2_to_3": 0.5592562158,
+      "phase3_to_filing": 0.5950738983,
+      "filing_to_approval": 0.9673712737
+    }
+  },
+  {
+    "name": "phase3_breakthrough_prior_approval",
+    "asset": {
+      "current_phase": "phase3",
+      "disease_area": "Oncology",
+      "breakthrough_flag": true,
+      "prior_approval_flag": true
+    },
+    "cumulative_pos": 0.6122933424,
+    "per_phase_adjusted": {
+      "phase3_to_filing": 0.6396498578,
+      "filing_to_approval": 0.9572320465
+    }
+  },
+  {
+    "name": "phase2_positive_trial",
+    "asset": {
+      "current_phase": "phase2",
+      "disease_area": "Neurology",
+      "trial_outcome": "positive"
+    },
+    "cumulative_pos": 0.1493882475,
+    "per_phase_adjusted": {
+      "phase2_to_3": 0.3244911182,
+      "phase3_to_filing": 0.531,
+      "filing_to_approval": 0.867
+    }
+  },
+  {
+    "name": "lead_indication_phase1",
+    "asset": {
+      "current_phase": "phase1",
+      "lead_indication_flag": true
+    },
+    "cumulative_pos": 0.1158086188,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.6319560238,
+      "phase2_to_3": 0.3499435457,
+      "phase3_to_filing": 0.578,
+      "filing_to_approval": 0.906
+    }
+  },
+  {
+    "name": "rare_disease_hematology_phase1",
+    "asset": {
+      "current_phase": "phase1",
+      "disease_area": "Hematology",
+      "rare_disease_flag": true
+    },
+    "cumulative_pos": 0.3950742534,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.8137573725,
+      "phase2_to_3": 0.6473391222,
+      "phase3_to_filing": 0.7866154885,
+      "filing_to_approval": 0.9534313849
+    }
+  },
+  {
+    "name": "full_stack_from_filing",
+    "asset": {
+      "current_phase": "filing",
+      "disease_area": "Oncology",
+      "biomarker_flag": true,
+      "breakthrough_flag": true,
+      "prior_approval_flag": true
+    },
+    "cumulative_pos": 0.9829649256,
+    "per_phase_adjusted": {
+      "filing_to_approval": 0.9829649256
+    }
+  },
+  {
+    "name": "full_stack_from_phase1",
+    "asset": {
+      "current_phase": "phase1",
+      "disease_area": "Autoimmune",
+      "modality": "Monoclonal antibody",
+      "biomarker_flag": true,
+      "breakthrough_flag": true,
+      "prior_approval_flag": true,
+      "trial_outcome": "positive",
+      "lead_indication_flag": true
+    },
+    "cumulative_pos": 0.4168340514,
+    "per_phase_adjusted": {
+      "phase1_to_2": 0.743732569,
+      "phase2_to_3": 0.6276705435,
+      "phase3_to_filing": 0.9019437364,
+      "filing_to_approval": 0.99
+    }
+  }
+]

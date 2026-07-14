@@ -11,8 +11,10 @@ ML, no synthetic data): baseline → odds → likelihood ratios (with shrinkage)
 then **compound** across phases. Every number must trace to a published figure/table — never
 invent values.
 
-**Status:** Day 1 (data extraction & architecture) complete; 46 pytest tests pass.
-Days 2–5 build the odds engine, pipeline, validation, and packaging on top of the data layer.
+**Status:** Days 1–4 complete; 161 pytest tests pass. The data layer, odds engine,
+likelihood ratios, the per-phase pipeline (baseline → LRs → compound → cumulative PoS), and
+published-benchmark validation are built. Day 5 adds the packaged API + methodology docs and
+tags v0.1.0.
 
 ## Sources (the only allowed origins of any number)
 
@@ -52,12 +54,25 @@ data/raw/*.json  ──►  scripts/build_baseline_rates.py  ──►  data/bas
   `data/asset_schema.json` is generated from it.
 - `src/pos_engine/odds.py` — `prob_to_odds`/`odds_to_prob`/`clip_prob`; the odds-space
   primitives, with 0.1%–99% clipping so 0%/100% cells don't blow up (Day 2).
-- `src/pos_engine/config.py` — Day-2 tunables in one place: clip bounds, shrinkage `k`,
-  `MIN_ARM_N`, the LR reference-arm map, Fig-14 illustrative deltas, correlation groups.
+- `src/pos_engine/config.py` — tunables in one place: clip bounds, shrinkage `k`,
+  `MIN_ARM_N`, the LR reference-arm map, Fig-14 illustrative deltas, correlation groups, and
+  (Day 3) the `EngineConfig` dataclass + `EVIDENCE_ROUTING` table.
 - `src/pos_engine/likelihood_ratios.py` — `LikelihoodRatios.lr(evidence_type, phase, value)`
   derives an odds-ratio LR from two published arms (None-skips sub-`MIN_ARM_N` arms), and
   `.combine(baseline_prob, evidence_items)` folds LRs onto a baseline with correlation-group
   shrinkage + an audit trail (see `docs/likelihood_ratios.md`).
+- `src/pos_engine/engine.py` — `PoSEngine` (Day 3): `select_baseline` → route evidence via
+  `EVIDENCE_ROUTING` → `adjust_phase_probability` → `compound_pos`. Compounds the adjusted
+  per-phase probabilities into a cumulative PoS with a per-phase waterfall audit. Routing
+  honours **temporality** (persistent / next-only / regulatory) and a **baseline-tier
+  double-count guard** (don't apply the modality LR when the baseline itself fell back to the
+  modality tier). See `docs/pipeline.md`.
+- **Day-4 validation layer** (no engine changes): `data/raw/benchmarks_bioqls.json` holds the
+  published Fig 5b/10b/11 LOAs (benchmark ground truth, not engine input); `tests/test_benchmarks.py`
+  asserts the engine reproduces them (Tier A tight, Tier B biomarker-2× + loose Wong cross-source).
+  `data/golden_scenarios.json` (built by `scripts/build_golden_scenarios.py`) is a regression
+  snapshot guarded by the same "committed matches generator" test. `tests/test_shrinkage_sweep.py`
+  sweeps `k`. Results + documented BIO/Wong divergences in `docs/validation.md`.
 
 ## Key decisions / gotchas (don't relearn these the hard way)
 
