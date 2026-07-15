@@ -67,6 +67,13 @@ data/raw/*.json  ──►  scripts/build_baseline_rates.py  ──►  data/bas
   honours **temporality** (persistent / next-only / regulatory) and a **baseline-tier
   double-count guard** (don't apply the modality LR when the baseline itself fell back to the
   modality tier). See `docs/pipeline.md`.
+- **Name → PoS layer** (`scripts/assess_drug.py "NAME"`): `src/pos_engine/registry.py` resolves a
+  drug/vaccine name against `data/drug_registry.json`; `src/pos_engine/report.py` renders the
+  `compound_pos` audit trail as a **critical paragraph** (`assess(name)["paragraph"]`).
+  ⚠️ **Neither source contains any per-drug row**, so a name alone cannot be scored: registry
+  entries are *declared inputs* carrying `_source`/`_as_of`, never source-derived. Unknown names
+  **fail closed** rather than quietly returning the industry average under a drug's name. The
+  registry ships only a fictional `EXAMPLE-001`; real programs must be added with provenance.
 - **Day-4 validation layer** (no engine changes): `data/raw/benchmarks_bioqls.json` holds the
   published Fig 5b/10b/11 LOAs (benchmark ground truth, not engine input); `tests/test_benchmarks.py`
   asserts the engine reproduces them (Tier A tight, Tier B biomarker-2× + loose Wong cross-source).

@@ -173,6 +173,10 @@ class PoSEngine:
                 "baseline_source_ref": step["baseline"]["source_ref"],
                 "adjusted_prob": step["adjusted_prob"],
                 "cumulative_after": cumulative,
+                # What routing asked for vs what actually carried an LR: a signal can be
+                # routed here and still be dropped (no published contrast at this phase,
+                # or an arm below MIN_ARM_N). Reports must be able to say so.
+                "evidence_routed": [etype for etype, _ in step["evidence"]],
                 "audit": step["combine"]["audit"],
             })
 

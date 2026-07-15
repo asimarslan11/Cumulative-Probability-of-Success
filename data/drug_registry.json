@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "description": "Asset attributes for named drug / vaccine programs, keyed by name.",
+    "READ_THIS_FIRST": "THESE ARE DECLARED INPUTS, NOT SOURCE DATA. BIO/QLS (2021) and Wong (2019) are aggregate statistics: neither contains a single per-drug row, so a program's phase / disease area / modality / flags CANNOT be derived from them. Every entry below is a human assertion about a real-world program. The engine's statistics still trace to published figures, but a per-drug estimate is only ever as good as the entry it started from -- a wrong current_phase changes the answer more than any modelling choice in the engine.",
+    "entry_fields": {
+      "current_phase": "REQUIRED. phase1 | phase2 | phase3 | filing -- where the program is NOW.",
+      "disease_area": "Optional. One of the 15 canonical DiseaseArea values (see data/taxonomy.json).",
+      "modality": "Optional. One of the 10 BIO/QLS Figure 10b modalities (see src/pos_engine/asset.py).",
+      "biomarker_flag": "Optional bool. Patient-preselection biomarker used.",
+      "rare_disease_flag": "Optional bool. Rare / orphan indication.",
+      "prior_approval_flag": "Optional bool. Already approved for another indication.",
+      "breakthrough_flag": "Optional bool. FDA Breakthrough Therapy designation.",
+      "trial_outcome": "Optional. positive | negative | unknown -- the latest pivotal read-out.",
+      "lead_indication_flag": "Optional bool. This is the drug's lead indication.",
+      "_source": "REQUIRED. Where these attributes came from (registry, filing, press release, label...).",
+      "_as_of": "REQUIRED. ISO date the attributes were last checked. Phases go stale."
+    },
+    "how_to_add": "Add a key under 'assets' with the fields above. Names match case-insensitively. Do not guess a phase: an unverified current_phase produces a confidently wrong number. If you don't have the attributes, pass them explicitly on the command line instead of committing a guess.",
+    "why_this_is_not_prefilled": "No real programs are seeded here because their attributes are not in this repo's sources and inventing them would fabricate the one input the whole estimate pivots on. EXAMPLE-001 is fictional and exists only to exercise the pipeline."
+  },
+
+  "assets": {
+    "EXAMPLE-001": {
+      "current_phase": "phase2",
+      "disease_area": "Oncology",
+      "modality": "Monoclonal antibody",
+      "biomarker_flag": true,
+      "breakthrough_flag": true,
+      "_source": "FICTIONAL demo entry -- not a real program. Exists to exercise the pipeline.",
+      "_as_of": "2026-07-15"
+    }
+  }
+}
